@@ -1,34 +1,28 @@
 #include <bits/stdc++.h>
+#include <fstream>
 
 using namespace std;
 
 int main(){
-    int N;
-    cin >> N;
-
-    string mat[N][N];
-
-    for(int i = 0; i < N; i++){
-        for(int j = 0; j < N; j++){
-            cin >> mat[i][j];
-        }
-    }
-    for (int i = 0; i < N; i++){
-        for(int j = 0; j < N; j++){
-            if(mat[i][j] == "#"){
-                mat[i][j] = "-1";
-            }
-            else if(mat[i][j] == "*"){
-                mat[i][j] = "0";
-            }
-        }
-    }
-
-    for(int i = 0; i < N; i++){
-        for(int j = 0; j < N; j++){
-            cout << mat[i][j] << " ";
-        }
-         cout << endl;
-    }
+    ifstream arquivo;
+    string leitura;
     
+    vector<string> lab;
+
+    arquivo.open("labirinto.txt");
+
+    while(getline(arquivo, leitura)){
+        for(int i = 0; i < leitura.size(); i++){
+            if(leitura[i] == '#')
+                lab.push_back("-1");
+            else if(leitura[i] == '*')
+                lab.push_back("0");
+        }
+    }
+
+    for(int t = 0; t < lab.size(); t++){
+        cout << lab[t] << endl;
+    }
+
+    return 0;
 }
